@@ -20,34 +20,41 @@ int main(int argc, char *argv[]){
 	void addPlane(struct Plane planeData);
 	void searchPlane(int planeID);
 	struct Plane collectPlaneData();
-	
+	bool running = true;
 
 	printf("International XYZ Airport\n");
-	printf("Please provide command:\n");
 	
 	/* The purpose of this section is to read users input 
 	 * and execute command.
 	 */
 
-	readSingleLine(userInput);
-	code = commandEvaluation(userInput);
-	
-	switch (code){
-		case 1:
-			struct Plane inputPlane = collectPlaneData();
-			addPlane(inputPlane);
-			break;
-		case 2:
-			int plane_id;
-			printf("Give me the plane id you want me to search: ");
-			scanf("%i\n", &plane_id);
-			searchPlane(plane_id);
-			break;
-		default:
-			printf("You didn't give a valid command\n");
-			break;
+	while (running){
 
+		printf("Please give me the next command: ");
+		readSingleLine(userInput);
+		code = commandEvaluation(userInput);
+
+		switch (code){
+			case 1:
+				struct Plane inputPlane = collectPlaneData();
+				addPlane(inputPlane);
+				break;
+			case 2:
+				int plane_id;
+				printf("Give me the plane id you want me to search: ");
+				scanf("%i", &plane_id);
+				searchPlane(plane_id);
+				break;
+			case 3:
+				running = false;
+				break;
+			default:
+				printf("You didn't give a valid command\n");
+				break;
+
+		}
 	}	
 
 	return 0;
+
 }

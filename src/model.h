@@ -64,7 +64,7 @@ void searchPlane(int planeID){
 	// returns the information about the plane
 	
 	FILE *ptr;
-	ptr = fopen("airplane.bin", "r");
+	ptr = fopen("airplanes.bin", "r");
 	struct Plane temp;
 
 	if (ptr == NULL){
@@ -111,22 +111,18 @@ struct Plane collectPlaneData(){
 	void readString(char *array);
 	
 	printf("Plane ID: ");
-	scanf("%i\n", &temp);
-	result.plane_id = temp;
+	scanf("%i", &result.plane_id);
 
 	printf("Number of passengers: ");
-	scanf("%i\n", &temp);
-	result.passangersNumber = temp;
+	scanf("%i", &result.passangersNumber);
 
 	char companyName[80];
 	printf("Name of Company: ");
-	readString(companyName);
-	printf("\n");
+	scanf("%s", result.company);
 	
 	printf("Flight Number (give 0 if you don't have fligth number at this point): ");
-	scanf("%i\n", &temp);
-	result.flight_id = temp;
-
+	scanf("%i", &result.flight_id);
+	
 	return result;
 
 }

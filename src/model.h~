@@ -10,7 +10,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<Ole2.h>
-#include"functionality.h"
+
 
 typedef struct Plane {
 	int plane_id;
@@ -64,7 +64,7 @@ void searchPlane(int planeID){
 	// returns the information about the plane
 	
 	FILE *ptr;
-	ptr = fopen("airplane.bin", "r");
+	ptr = fopen("airplanes.bin", "r");
 	struct Plane temp;
 
 	if (ptr == NULL){
@@ -86,6 +86,21 @@ void searchPlane(int planeID){
 
 }
 
+void readString(char *array){
+	// Gets user input and stores it in an array
+	
+	char character = getchar();
+	int i = 0;
+
+	while (character != '\n'){
+		array[i] = character;
+		i++;
+		character = getchar();
+	}
+
+	array[i] = '\0';
+}
+
 struct Plane collectPlaneData(){
 	// Collects user inputs to store in a 
 	// Plane structure and return this structure
@@ -93,24 +108,26 @@ struct Plane collectPlaneData(){
 		
 	struct Plane result;
 	int temp;
+	void readString(char *array);
 	
 	printf("Plane ID: ");
-	scanf("%i\n", &temp);
-	result.plane_id = temp;
+	scanf("%i", &result.plane_id);
 
 	printf("Number of passengers: ");
-	scanf("%i\n", &temp);
-	result.passangersNumber = temp;
+	scanf("%i", &result.passangersNumber);
 
 	char companyName[80];
 	printf("Name of Company: ");
-	
-	
+	scanf("%s", result.company);
 	
 	printf("Flight Number (give 0 if you don't have fligth number at this point): ");
-	scanf("%i\n", &temp);
-	result.flight_id = temp;
+	scanf("%i", &result.flight_id);
 
+	printf("%i\n", result.plane_id);
+	printf("%i\n", result.passangersNumber);
+	printf("%s\n", result.company);
+	printf("%i\n", result.flight_id);
+	
 	return result;
 
 }
