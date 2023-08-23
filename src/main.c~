@@ -3,15 +3,24 @@
 #include<string.h>
 #include<stdlib.h>
 #include"functionality.h"
+#include"model.h"
 
 int main(int argc, char *argv[]){
 
-
+	
+	// Methods and variables that will be used from the 
+	// program 
+	
 	void readUserInput(char *inputValue);
-	void printContent(char *data);
+	void userContent(char *inputValue);	
 	char userInput[80];    // Store users input
 	void readSingleLine(char *inputValue);
-	void commandEvaluation(char *inputValue);
+	int commandEvaluation(char *inputValue);
+	int code;
+	void addPlane(struct Plane planeData);
+	void searchPlane(int planeID);
+	struct Plane collectPlaneData();
+	
 
 	printf("International XYZ Airport\n");
 	printf("Please provide command:\n");
@@ -21,8 +30,24 @@ int main(int argc, char *argv[]){
 	 */
 
 	readSingleLine(userInput);
-	commandEvaluation(userInput);
-		
+	code = commandEvaluation(userInput);
+	
+	switch (code){
+		case 1:
+			struct Plane inputPlane = collectPlaneData();
+			addPlane(inputPlane);
+			break;
+		case 2:
+			int plane_id;
+			printf("Give me the plane id you want me to search: ");
+			scanf("%i\n", &plane_id);
+			searchPlane(plane_id);
+			break;
+		default:
+			printf("You didn't give a valid command\n");
+			break;
+
+	}	
 
 	return 0;
 }

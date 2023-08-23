@@ -75,13 +75,10 @@ int commandEvaluation(char *inputValue){
 	// return a number based on the command given so the program can 
 	// execute 
 	
-	switch (inputValue){
-		case "test":
-			printf("This is a successful test.\n");
-			break;
-		default:
-			printf("Unsuccessful test.\n");
-			break;
+	if (strcmp("add plane", inputValue) == 0){
+			return 1;
+	} else if (strcmp("search plane", inputValue) == 0){
+		return 2;
 	}
 
 	return 0;

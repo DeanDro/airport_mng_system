@@ -10,7 +10,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<Ole2.h>
-
+#include"functionality.h"
 
 typedef struct Plane {
 	int plane_id;
@@ -86,21 +86,6 @@ void searchPlane(int planeID){
 
 }
 
-void readString(char *array){
-	// Gets user input and stores it in an array
-	
-	char character = getchar();
-	int i = 0;
-
-	while (character != '\n'){
-		array[i] = character;
-		i++;
-		character = getchar();
-	}
-
-	array[i] = '\0';
-}
-
 struct Plane collectPlaneData(){
 	// Collects user inputs to store in a 
 	// Plane structure and return this structure
@@ -108,7 +93,6 @@ struct Plane collectPlaneData(){
 		
 	struct Plane result;
 	int temp;
-	void readString(char *array);
 	
 	printf("Plane ID: ");
 	scanf("%i\n", &temp);
@@ -120,8 +104,8 @@ struct Plane collectPlaneData(){
 
 	char companyName[80];
 	printf("Name of Company: ");
-	readString(companyName);
-	printf("\n");
+	
+	
 	
 	printf("Flight Number (give 0 if you don't have fligth number at this point): ");
 	scanf("%i\n", &temp);
