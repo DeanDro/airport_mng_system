@@ -76,9 +76,11 @@ int commandEvaluation(char *inputValue){
 	// execute 
 	
 	if (strcmp("add plane", inputValue) == 0){
-			return 1;
+		return 1;
 	} else if (strcmp("search plane", inputValue) == 0){
 		return 2;
+	} else if (strcmp("quit", inputValue) == 0){
+		return 3;
 	}
 
 	return 0;

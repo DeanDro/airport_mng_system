@@ -1,8 +1,9 @@
 /*  The purpose of this file is to work as the model part 
  *  of the application that will manage the data and interaction
  *  with the database
+ *  Author: Konstantinos Drosos
  *  Created: 8-21-2023
- *  Last updated: 8-22-2023
+ *  Last updated: 8-23-2023
  */
 
 #include<stdio.h>
@@ -42,6 +43,8 @@ typedef struct Terminal{
 	int freeParkingSpots;
 } Terminal;
 
+int EXISTING_PLANE_IDS[100];
+int INDEX = 0;
 
 void addPlane(struct Plane inputData){
 	// Method to store the data for a plane in the 
@@ -123,8 +126,60 @@ struct Plane collectPlaneData(){
 	
 	printf("Flight Number (give 0 if you don't have fligth number at this point): ");
 	scanf("%i", &result.flight_id);
+
+	// Once all data have been collected add airoplane ID in array
+	EXISTING_PLANE_IDS[INDEX] = result.plane_id;
+	INDEX++;
 	
 	return result;
 
 }
+
+void printAllIDs(){
+	// Method to print all ids of airplanes already used
+	
+	for (int i = 0; i <= INDEX; i++){
+		printf("%i\n",EXISTING_PLANE_IDS[i]);
+	}
+}
+
+void deletePlaneData(int planeID){
+	// Method to remove the information for an airplane from the database
+	
+	struct Plane temp; 
+	FILE *ptr;
+	ptr = fopen("airplanes.bin", "a");
+	if (ptr == NULL){
+		printf("Error: File wasn't found\n");
+		exit(1);
+	}
+	
+	bool included = false;
+	int loc;
+	for (int i = 0; i<= INDEX; i++){
+		if ( planeID == EXISTING_PLANE_IDS[i]){
+			included = true;
+			loc = i;
+		}
+	}
+
+	if (!included) {
+		printf("The Plane ID doesn't exist in the database\n");
+	} else {
+		
+		while (!feof(ptr)){
+			fread(&temp, sizeof(Plane), 1, ptr);
+
+			if (temp.plane_id == planeID){
+				temp.plane_id = 0;
+				temp.company = NULL;
+				temp.passangersNumber = 0;
+				temp.flight_id = 0;
+				EXISTING_PLANE_IDS[loc] = 0;
+
+			}
+		}
+	}
+}
+
 

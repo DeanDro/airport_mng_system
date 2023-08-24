@@ -38,7 +38,6 @@ int main(int argc, char *argv[]){
 			case 1:
 				struct Plane inputPlane = collectPlaneData();
 				addPlane(inputPlane);
-				printf("Succes: %i\n", inputPlane.plane_id);
 				break;
 			case 2:
 				int plane_id;
