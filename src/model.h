@@ -80,6 +80,8 @@ void searchPlane(int planeID){
 	if (temp.plane_id == planeID){
 		printf("Plane ID: %d\n", temp.plane_id);
 		printf("Passangers Capacity: %d\n", temp.passangersNumber);
+		printf("Company Name: %s\n", temp.company);
+		printf("Scheduled Flight Number: %i\n", temp.flight_id);
 	} else {
 		printf("Plane with ID number %d wasn't found.\n", planeID);
 	}
@@ -92,11 +94,11 @@ void readString(char *array){
 	char character = getchar();
 	int i = 0;
 
-	while (character != '\n'){
+	do{
 		array[i] = character;
 		i++;
 		character = getchar();
-	}
+	} while (character != '\n');
 
 	array[i] = '\0';
 }
@@ -116,9 +118,8 @@ struct Plane collectPlaneData(){
 	printf("Number of passengers: ");
 	scanf("%i", &result.passangersNumber);
 
-	char companyName[80];
 	printf("Name of Company: ");
-	scanf("%s", result.company);
+	readString(result.company);
 	
 	printf("Flight Number (give 0 if you don't have fligth number at this point): ");
 	scanf("%i", &result.flight_id);
