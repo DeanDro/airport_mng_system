@@ -48,6 +48,9 @@ int main(int argc, char *argv[]){
 			case 3:
 				running = false;
 				break;
+			case 4: 
+				printAllIDs();
+				break;
 			default:
 				printf("You didn't give a valid command\n");
 				break;

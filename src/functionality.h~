@@ -81,6 +81,8 @@ int commandEvaluation(char *inputValue){
 		return 2;
 	} else if (strcmp("quit", inputValue) == 0){
 		return 3;
+	} else if (strcmp("print all ids", inputValue) == 0){
+		return 4;
 	}
 
 	return 0;

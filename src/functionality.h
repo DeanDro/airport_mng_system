@@ -83,6 +83,8 @@ int commandEvaluation(char *inputValue){
 		return 3;
 	} else if (strcmp("print all ids", inputValue) == 0){
 		return 4;
+	} else if (strcmp("add flight", inputValue) == 0){
+		return 5;
 	}
 
 	return 0;

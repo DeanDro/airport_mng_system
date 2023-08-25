@@ -3,7 +3,7 @@
  *  with the database
  *  Author: Konstantinos Drosos
  *  Created: 8-21-2023
- *  Last updated: 8-23-2023
+ *  Last updated: 8-24-2023
  */
 
 #include<stdio.h>
@@ -45,6 +45,8 @@ typedef struct Terminal{
 
 int EXISTING_PLANE_IDS[100];
 int INDEX = 0;
+int FLIGHTS_LIST[100];
+int FLIGHT_INDEX = 0;
 
 void addPlane(struct Plane inputData){
 	// Method to store the data for a plane in the 
@@ -88,6 +90,8 @@ void searchPlane(int planeID){
 	} else {
 		printf("Plane with ID number %d wasn't found.\n", planeID);
 	}
+
+	fclose(ptr);
 
 }
 
@@ -172,7 +176,8 @@ void deletePlaneData(int planeID){
 
 			if (temp.plane_id == planeID){
 				temp.plane_id = 0;
-				temp.company = {};
+				char newArray[80];
+				memcpy(temp.company, newArray, 80);
 				temp.passangersNumber = 0;
 				temp.flight_id = 0;
 				EXISTING_PLANE_IDS[loc] = 0;
@@ -180,6 +185,82 @@ void deletePlaneData(int planeID){
 			}
 		}
 	}
+
+	fclose(ptr);
+
+}
+
+struct FlightDetails collectFlightDetails(){
+	// Collects all information from user for the 
+	// flight details and returns a Flight structure.
+	
+	struct FlightDetails result;
+	void readString(char *array);
+	bool validateFlightIdAvailable(int flight_id);
+
+	printf("Provide Flight ID: ");
+	scanf("%i", &result.flight_id);
+	
+	bool unique = validateFlightIdAvailable(result.flight_id);
+	
+	// Confirm it is a unique flight id
+	while (!unique){
+		printf("The Flight ID you provided already exists. Please give another number: \n");
+		scanf("%i", &result.flight_id);
+		unique = validateFlightIdAvalable(result.flight_id);
+	}
+
+	printf("Provide departure date: ");
+	readString(result.date);
+
+	printf("Provide destination: ");
+	readString(result.destination);
+
+	printf("Provide departure time: ");
+	readString(result.departureTime);
+
+	printf("Provide arrival time: ");
+	readString(result.arrivalTime);
+
+	printf("Departure gate: ");
+	scanf("%i", &result.gate_id);
+
+	printf("Number of passengers in the flight: ");
+	scanf("%i", &result.numberPassangers);
+
+	// Capture the list of flights 
+	FLIGHTS_LIST[FLIGHT_INDEX] = result.flight_id;
+	FLIGHT_INDEX++;
+
+	return result;
+
+}
+
+bool validateFlightIdAvailable(int flight_id){
+	// Validates the flight ID if it is unique.
+	
+	bool unique = true; 
+	for (int i = 0; i <= FLIGHT_INDEX; i++){
+		if (FLIGHTS_LIST[i] == flight_id){
+			unique = false;
+		}
+	}
+
+	return unique; 
+}
+
+void addFlightID(struct FlightDetails flight){
+	// Adds a new flight details in the database
+	
+	FILE *ptr; 
+	ptr = fopen("flightDetails.bin", "a");
+	if (ptr == NULL){
+		printf("The database isn't available.\n");
+		exit(1);
+	}
+
+	fwrite(&flight, sizeof(FlightDetails), 1, ptr);
+	fclose(ptr);
 }
 
 

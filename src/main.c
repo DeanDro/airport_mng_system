@@ -21,6 +21,8 @@ int main(int argc, char *argv[]){
 	void searchPlane(int planeID);
 	struct Plane collectPlaneData();
 	bool running = true;
+	struct FlightDetails collectFlightDetails();
+	void addFlightID(struct FlightDetails flight);
 
 	printf("International XYZ Airport\n");
 	
@@ -50,6 +52,10 @@ int main(int argc, char *argv[]){
 				break;
 			case 4: 
 				printAllIDs();
+				break;
+			case 5:
+				struct FlightDetails flight = collectFlightDetails();
+				addFlightID(flight);
 				break;
 			default:
 				printf("You didn't give a valid command\n");
