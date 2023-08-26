@@ -207,7 +207,7 @@ struct FlightDetails collectFlightDetails(){
 	while (!unique){
 		printf("The Flight ID you provided already exists. Please give another number: \n");
 		scanf("%i", &result.flight_id);
-		unique = validateFlightIdAvalable(result.flight_id);
+		unique = validateFlightIdAvailable(result.flight_id);
 	}
 
 	printf("Provide departure date: ");

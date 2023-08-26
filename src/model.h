@@ -264,3 +264,26 @@ void addFlightID(struct FlightDetails flight){
 }
 
 
+void addGateDetails(){
+	// Adds details for a gate 
+	
+	struct Gate result;
+	printf("Provide the gate number: ");
+	scanf("%i", &result.gate_id);
+
+	printf("Provide the terminal id: ");
+	scanf("%i", &result.terminal_id);
+
+	FILE *ptr;
+	ptr = fopen("gates.bin", "a");
+	if (ptr == NULL){
+		printf("The gates database wasn't found.\n");
+		exit(1);
+	}
+
+	fwrite(&result, sizeof(Gate), 1, ptr);
+	fclose(ptr);
+
+}
+
+
