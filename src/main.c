@@ -5,6 +5,8 @@
 #include"functionality.h"
 #include"model.h"
 
+
+
 int main(int argc, char *argv[]){
 
 	
@@ -19,10 +21,11 @@ int main(int argc, char *argv[]){
 	int code;
 	void addPlane(struct Plane planeData);
 	void searchPlane(int planeID);
-	struct Plane collectPlaneData();
+	struct Plane collectPlaneData;
 	bool running = true;
-	struct FlightDetails collectFlightDetails();
+	struct FlightDetails collectFlightDetails;
 	void addFlightID(struct FlightDetails flight);
+	void createCircle();
 
 	printf("International XYZ Airport\n");
 	
@@ -38,7 +41,7 @@ int main(int argc, char *argv[]){
 
 		switch (code){
 			case 1:
-				struct Plane inputPlane = collectPlaneData();
+				struct Plane inputPlane = collectPlaneData;
 				addPlane(inputPlane);
 				break;
 			case 2:
@@ -54,13 +57,14 @@ int main(int argc, char *argv[]){
 				printAllIDs();
 				break;
 			case 5:
-				struct FlightDetails flight = collectFlightDetails();
+				struct FlightDetails flight = collectFlightDetails;
 				addFlightID(flight);
+				break;
+			case 6:
 				break;
 			default:
 				printf("You didn't give a valid command\n");
 				break;
-
 		}
 	}	
 

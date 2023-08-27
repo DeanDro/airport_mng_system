@@ -3,7 +3,7 @@
  *  with the database
  *  Author: Konstantinos Drosos
  *  Created: 8-21-2023
- *  Last updated: 8-24-2023
+ *  Last updated: 8-25-2023
  */
 
 #include<stdio.h>
@@ -36,7 +36,7 @@ typedef struct Gate{
 } Gate;
 
 typedef struct Terminal{
-	int terminal_id;
+	char terminal_num;
 	int listGates[100];
 	int numberGates;
 	int parkingCarVolume;
@@ -47,6 +47,7 @@ int EXISTING_PLANE_IDS[100];
 int INDEX = 0;
 int FLIGHTS_LIST[100];
 int FLIGHT_INDEX = 0;
+
 
 void addPlane(struct Plane inputData){
 	// Method to store the data for a plane in the 
@@ -286,4 +287,31 @@ void addGateDetails(){
 
 }
 
+struct Terminal collectTerminalDetails(){
+	// Method to collect the information for the creation
+	// of a terminal 
 
+	struct Terminal result; 
+
+	printf("Provide the id of the terminal: ");
+	scanf("%c", &result.terminal_num);
+
+	int index = 0;
+	printf("How many gates does the terminal have: ");
+	scanf("%i", &index);
+
+	int array[100];
+	for (int i = 1; i <= index; i++){
+		array[i-1] = i;
+	}
+	memcpy(result.listGates, array, 100);
+
+	printf("Provide the number of parking spots available: ");
+	scanf("%i", &result.freeParkingSpots);
+
+	printf("Provide the number of cars curently on park: ");
+	scanf("%i", &result.parkingCarVolume);
+
+	return result;
+	
+}
