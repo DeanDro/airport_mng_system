@@ -104,8 +104,8 @@ void calculateFlightDuration(char *destination){
 	
 	for (int j = 0; j < 13; j++){
 		if (strcmp(dest[j], array) == 0){
-			float time_to_dest = miles[j] / AVG_PLANE_SPEED;
-			printf("The time to destination is: %f", time_to_dest);
+			float time_to_dest = miles[j] / (float) AVG_PLANE_SPEED;
+			printf("The time to destination is: %.2f hours.\n", time_to_dest);
 		}
 	}
 

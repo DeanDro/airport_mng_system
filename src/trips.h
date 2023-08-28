@@ -31,6 +31,7 @@
 
 #define AVG_PLANE_SPEED 525
 
-extern char *dest[] = {"LOS_ANGELES", "LONDON", "PARIS", "HONG_KONG", "TOKYO", "SYDNEY", "ROME", "ZURICH", "RIO_DE_JANEIRO", "MIAMI", "NEW_DEHLI", "SEATTLE", "DC"};
+extern char *dest[] = {"LOS_ANGELES", "LONDON", "PARIS", "HONG_KONG", "TOKYO", "SYDNEY", "ROME", "ZURICH", "RIO_DE_JANEIRO", "MIAMI",
+"NEW_DEHLI", "SEATTLE", "DC"};
 
 extern int miles[] = {2785, 3465, 3631, 8042, 6733, 9920, 4285, 3933, 4824, 1274, 7294, 2842, 217};
