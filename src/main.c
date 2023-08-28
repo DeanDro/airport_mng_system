@@ -4,7 +4,7 @@
 #include<stdlib.h>
 #include"functionality.h"
 #include"model.h"
-
+#include"trips.h"
 
 
 int main(int argc, char *argv[]){
@@ -26,6 +26,7 @@ int main(int argc, char *argv[]){
 	struct FlightDetails collectFlightDetails;
 	void addFlightID(struct FlightDetails flight);
 	void createCircle();
+	void calculateFlightDuration(char *destination);
 
 	printf("International XYZ Airport\n");
 	
@@ -61,6 +62,10 @@ int main(int argc, char *argv[]){
 				addFlightID(flight);
 				break;
 			case 6:
+				printf("Please provide destination: ");
+				char inputValue[80];
+				readSingleLine(inputValue);
+				calculateFlightDuration(inputValue);
 				break;
 			default:
 				printf("You didn't give a valid command\n");
@@ -69,5 +74,39 @@ int main(int argc, char *argv[]){
 	}	
 
 	return 0;
+
+}
+
+
+void calculateFlightDuration(char *destination){
+	// Calculates the time it takes to travel
+	// to the destination assuming the plane left 
+	// from Newark airport.
+
+	int num_elements = 0;
+	char *start_ptr = destination;
+
+	while (*destination != '\0'){
+		num_elements++;
+		destination++;
+	}
+
+	char *array = (char *) malloc(num_elements * sizeof(char));
+
+	char letter;
+	int i = 0; 
+	for (; i < num_elements; i++){
+		letter = toupper(start_ptr[i]);
+		array[i] = letter;
+	}
+	i++;
+	array[i] = '\0';
+	
+	for (int j = 0; j < 13; j++){
+		if (strcmp(dest[j], array) == 0){
+			float time_to_dest = miles[j] / AVG_PLANE_SPEED;
+			printf("The time to destination is: %f", time_to_dest);
+		}
+	}
 
 }

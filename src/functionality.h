@@ -85,7 +85,7 @@ int commandEvaluation(char *inputValue){
 		return 4;
 	} else if (strcmp("add flight", inputValue) == 0){
 		return 5;
-	} else if (strcmp("launch gui", inputValue) == 0){
+	} else if (strcmp("flight time", inputValue) == 0){
 		return 6;
 	}
 
