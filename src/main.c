@@ -90,12 +90,13 @@ void calculateFlightDuration(char *destination){
 		num_elements++;
 		destination++;
 	}
+	num_elements++;
 
 	char *array = (char *) malloc(num_elements * sizeof(char));
 
 	char letter;
-	int i = 0; 
-	for (; i < num_elements; i++){
+	int i; 
+	for (i=0; i < num_elements; i++){
 		letter = toupper(start_ptr[i]);
 		array[i] = letter;
 	}
