@@ -315,3 +315,17 @@ struct Terminal collectTerminalDetails(){
 	return result;
 	
 }
+
+void storeTerminalDetails(struct Terminal terminalInfo){
+	// Method to store the information for a terminal to
+	// the local file 
+
+	FILE *ptr = fopen("terminals.bin", "a");
+	if (ptr == NULL){
+		printf("The terminal file couldn't open.\n");
+		exit(1);
+	}
+
+	fwrite(&terminalInfo, sizeof(Terminal), 1, ptr);
+	fclose(ptr);
+}
