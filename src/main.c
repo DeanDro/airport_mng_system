@@ -27,6 +27,8 @@ int main(int argc, char *argv[]){
 	void addFlightID(struct FlightDetails flight);
 	void createCircle();
 	void calculateFlightDuration(char *destination);
+	struct Terminal collectTerminalDetails();
+	void storeTerminalDetails(struct Terminal details);
 
 	printf("International XYZ Airport\n");
 	
@@ -66,6 +68,10 @@ int main(int argc, char *argv[]){
 				char inputValue[80];
 				readSingleLine(inputValue);
 				calculateFlightDuration(inputValue);
+				break;
+			case 7:
+				struct Terminal newTerm = collectTerminalDetails();
+				storeTerminalDetails(newTerm);
 				break;
 			default:
 				printf("You didn't give a valid command\n");

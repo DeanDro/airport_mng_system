@@ -1,8 +1,9 @@
 
 /*  The purpose of this file is to provide functionality
- *  functions for the main program. 
+ *  functions for the main program.
+ *	Author: Konstantinos Drosos
  *  Created on August, 20th 2023 
- *  Last updated on August, 20th 2023
+ *  Last updated: 8/29/2023
  */
 
 #include<stdio.h>
@@ -87,6 +88,8 @@ int commandEvaluation(char *inputValue){
 		return 5;
 	} else if (strcmp("flight time", inputValue) == 0){
 		return 6;
+	} else if (strcmp("add terminal", inputValue) == 0){
+		return 7;
 	}
 
 	return 0;
