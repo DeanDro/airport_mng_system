@@ -329,3 +329,32 @@ void storeTerminalDetails(struct Terminal terminalInfo){
 	fwrite(&terminalInfo, sizeof(Terminal), 1, ptr);
 	fclose(ptr);
 }
+
+struct Terminal getTerminal(char terminalID){
+	// This method takes as argument a terminal ID
+	// and returns back a Terminal structure. If the terminal ID 
+	// was found it will return the terminal with the ID.
+
+	FILE *ptr = fopen("terminals.bin", "a");
+	if (ptr == NULL){
+		printf("The terminal wasn't found.\n");
+		exit(1);
+	}
+
+	struct Terminal targetTerminal;
+
+	while (!feof(ptr) && targetTerminal.terminal_num != terminalID){
+		fread(&targetTerminal, sizeof(Terminal), 1, ptr);
+	}
+
+	// It will return the terminal struct regardless if it is the one we are searching for
+	// The evaluation should take place in a later stage.
+	return targetTerminal;
+
+}
+
+void manageTerminal(char terminalID){
+	// Method uses the getTerminal method to get the terminal
+	// from the database and make any updates. 
+
+}
