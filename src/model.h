@@ -335,7 +335,7 @@ struct Terminal getTerminal(char terminalID){
 	// and returns back a Terminal structure. If the terminal ID 
 	// was found it will return the terminal with the ID.
 
-	FILE *ptr = fopen("terminals.bin", "a");
+	FILE *ptr = fopen("terminals.bin", "r");
 	if (ptr == NULL){
 		printf("The terminal wasn't found.\n");
 		exit(1);
@@ -345,7 +345,10 @@ struct Terminal getTerminal(char terminalID){
 
 	while (!feof(ptr) && targetTerminal.terminal_num != terminalID){
 		fread(&targetTerminal, sizeof(Terminal), 1, ptr);
+		printf("Entered the test. We found %c\n", &targetTerminal.terminal_num);	
 	}
+
+	fclose(ptr);
 
 	// It will return the terminal struct regardless if it is the one we are searching for
 	// The evaluation should take place in a later stage.
@@ -357,4 +360,37 @@ void manageTerminal(char terminalID){
 	// Method uses the getTerminal method to get the terminal
 	// from the database and make any updates. 
 
+	struct Terminal getTerminal(char terminalID);
+	struct Terminal target = getTerminal(terminalID);
+	void storeTerminalDetails(struct Terminal targetTerminal);
+	void readString(char *array);
+	char command[80];
+
+	// check if terminal correct
+	if (target.terminal_num == terminalID){
+		printf("What element you want to update?\n");
+		readString(command);
+
+		if (strcmp("parking", command) == 0){
+			int numCars = 0;
+			printf("What is the change in the number of cars in the parking?");
+			scanf("%i", &numCars);
+
+			target.freeParkingSpots = target.parkingCarVolume - numCars;
+			storeTerminalDetails(target);
+		} else if (strcmp("parking size", command) == 0){
+			int parkingSize;
+			printf("How the parking capacity has changed?");
+			scanf("%i", &parkingSize);
+
+			target.parkingCarVolume += parkingSize;
+			storeTerminalDetails(target);
+		} else {
+			printf("You didn't provide a valid command. Try parking or parking size.\n");
+		}
+
+	} else {
+		printf("The terminal was not found in the database.\n");
+		printf("Please try again.\n");
+	}
 }

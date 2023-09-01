@@ -73,6 +73,12 @@ int main(int argc, char *argv[]){
 				struct Terminal newTerm = collectTerminalDetails();
 				storeTerminalDetails(newTerm);
 				break;
+			case 8:
+				char terminal_id;
+				printf("What is the terminal you want to modify?");
+				scanf("%c", &terminal_id);
+				manageTerminal(terminal_id);
+				break;
 			default:
 				printf("You didn't give a valid command\n");
 				break;

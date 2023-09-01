@@ -90,6 +90,8 @@ int commandEvaluation(char *inputValue){
 		return 6;
 	} else if (strcmp("add terminal", inputValue) == 0){
 		return 7;
+	} else if (strcmp("modify terminal", inputValue) == 0){
+		return 8;
 	}
 
 	return 0;
