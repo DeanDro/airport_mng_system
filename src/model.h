@@ -330,7 +330,7 @@ void storeTerminalDetails(struct Terminal terminalInfo){
 	fclose(ptr);
 }
 
-struct Terminal getTerminal(char terminalID){
+struct Terminal getTerminal(char *terminalID){
 	// This method takes as argument a terminal ID
 	// and returns back a Terminal structure. If the terminal ID 
 	// was found it will return the terminal with the ID.
@@ -343,9 +343,11 @@ struct Terminal getTerminal(char terminalID){
 
 	struct Terminal targetTerminal;
 
-	while (!feof(ptr) && targetTerminal.terminal_num != terminalID){
+	while (!feof(ptr)){
 		fread(&targetTerminal, sizeof(Terminal), 1, ptr);
-		printf("Entered the test. We found %c\n", &targetTerminal.terminal_num);	
+		if (*terminalID == targetTerminal.terminal_num){
+			break;
+		}
 	}
 
 	fclose(ptr);
@@ -356,18 +358,18 @@ struct Terminal getTerminal(char terminalID){
 
 }
 
-void manageTerminal(char terminalID){
+void manageTerminal(char *terminalID){
 	// Method uses the getTerminal method to get the terminal
 	// from the database and make any updates. 
 
-	struct Terminal getTerminal(char terminalID);
+	struct Terminal getTerminal(char *terminalID);
 	struct Terminal target = getTerminal(terminalID);
 	void storeTerminalDetails(struct Terminal targetTerminal);
 	void readString(char *array);
 	char command[80];
 
 	// check if terminal correct
-	if (target.terminal_num == terminalID){
+	if (target.terminal_num == *terminalID){
 		printf("What element you want to update?\n");
 		readString(command);
 
@@ -393,4 +395,17 @@ void manageTerminal(char terminalID){
 		printf("The terminal was not found in the database.\n");
 		printf("Please try again.\n");
 	}
+}
+
+void printTerminalDetails(char *terminalID){
+	// Prints all information about the current status
+	// of terminal
+
+	struct Terminal targetTerminal = getTerminal(terminalID);
+	
+	printf("Terminal ID: %c\n", targetTerminal.terminal_num);
+	printf("Number of gates in terminal: %i\n", targetTerminal.numberGates);
+	printf("Parking size of the terminal: %i\n", targetTerminal.freeParkingSpots);
+	printf("Number of free parking spots: %i\n", targetTerminal.freeParkingSpots - targetTerminal.parkingCarVolume);
+
 }

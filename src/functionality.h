@@ -92,6 +92,8 @@ int commandEvaluation(char *inputValue){
 		return 7;
 	} else if (strcmp("modify terminal", inputValue) == 0){
 		return 8;
+	} else if (strcmp("terminal details", inputValue) == 0){
+		return 9;
 	}
 
 	return 0;

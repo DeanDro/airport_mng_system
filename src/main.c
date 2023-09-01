@@ -74,10 +74,16 @@ int main(int argc, char *argv[]){
 				storeTerminalDetails(newTerm);
 				break;
 			case 8:
-				char terminal_id;
+				char terminal_id[10];
 				printf("What is the terminal you want to modify?");
-				scanf("%c", &terminal_id);
+				readSingleLine(terminal_id);
 				manageTerminal(terminal_id);
+				break;
+			case 9:
+				char terminal_num[10];
+				printf("Which terminal are you looking for?");
+				readSingleLine(terminal_num);
+				printTerminalDetails(terminal_num);
 				break;
 			default:
 				printf("You didn't give a valid command\n");
