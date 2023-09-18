@@ -82,13 +82,13 @@ int main(int argc, char *argv[]){
 				break;
 			case 8:
 				char terminal_id[10];
-				printf("What is the terminal you want to modify?");
+				printf("What is the terminal you want to modify? ");
 				readSingleLine(terminal_id);
 				manageTerminal(terminal_id);
 				break;
 			case 9:
 				char terminal_num[10];
-				printf("Which terminal are you looking for?");
+				printf("Which terminal are you looking for? ");
 				readSingleLine(terminal_num);
 				printTerminalDetails(terminal_num);
 				break;
@@ -134,5 +134,13 @@ void calculateFlightDuration(char *destination){
 			printf("The time to destination is: %.2f hours.\n", time_to_dest);
 		}
 	}
+
+}
+
+void printAirportStatus(){
+	//Helper method that prints overall airport status after every change 
+	//from the user. 
+
+	//TODO: Need to develop method that shows airport status
 
 }
