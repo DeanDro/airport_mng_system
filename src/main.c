@@ -5,7 +5,7 @@
 #include"functionality.h"
 #include"model.h"
 #include"trips.h"
-
+#include<windows.h>
 
 int main(int argc, char *argv[]){
 
@@ -30,15 +30,22 @@ int main(int argc, char *argv[]){
 	struct Terminal collectTerminalDetails();
 	void storeTerminalDetails(struct Terminal details);
 
-	printf("International XYZ Airport\n");
-	
+	printf("########################################################################################################\n\n");
+	printf("                                      International Airport XYZ\n\n");
+	printf("#########################################################################################################\n\n");
+	printf("1. add plane: To add a new plane in database     2. search plane: To search plane by flight id\n");
+	printf("3. print all ids: To return all flight ids       4. add flight: To add a new flight in the database\n");
+	printf("5. flight time: To find duration of a flight     6. add terminal: To add a new terminal in the database\n");
+	printf("7. modify terminal: To change terminal details   8. terminal details: To get details for all terminals\n");
+	printf("9: quit: To terminate the program\n");
+	printf("#########################################################################################################\n\n");
 	/* The purpose of this section is to read users input 
 	 * and execute command.
 	 */
 
 	while (running){
 
-		printf("Please give me the next command: ");
+		printf("Please give a command: ");
 		readSingleLine(userInput);
 		code = commandEvaluation(userInput);
 
