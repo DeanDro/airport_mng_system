@@ -44,9 +44,9 @@ typedef struct Terminal{
 } Terminal;
 
 int EXISTING_PLANE_IDS[100];
-int INDEX = 0;
+int INDEX = 0;  // Stores the number of airplanes in the database
 int FLIGHTS_LIST[100];
-int FLIGHT_INDEX = 0;
+int FLIGHT_INDEX = 0; 	// Stores the number of flights currently on schedule
 
 
 void addPlane(struct Plane inputData){
@@ -120,6 +120,7 @@ struct Plane collectPlaneData(){
 	int temp;
 	void readString(char *array);
 	
+	printf("Collecting data\n");
 	printf("Plane ID: ");
 	scanf("%i", &result.plane_id);
 
@@ -371,6 +372,10 @@ void manageTerminal(char *terminalID){
 	// check if terminal correct
 	if (target.terminal_num == *terminalID){
 		printf("What element you want to update?\n");
+		printf("#####################   Commands   ###################\n");
+		printf("parking: To adjust number of cars parked\n");
+		printf("parking size: To adjust the number of available spots\n");
+		printf("######################################################\n\n");
 		readString(command);
 
 		if (strcmp("parking", command) == 0){

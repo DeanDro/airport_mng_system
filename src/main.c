@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
 	int code;
 	void addPlane(struct Plane planeData);
 	void searchPlane(int planeID);
-	struct Plane collectPlaneData;
+	struct Plane collectPlaneData();
 	bool running = true;
 	struct FlightDetails collectFlightDetails;
 	void addFlightID(struct FlightDetails flight);
@@ -29,6 +29,7 @@ int main(int argc, char *argv[]){
 	void calculateFlightDuration(char *destination);
 	struct Terminal collectTerminalDetails();
 	void storeTerminalDetails(struct Terminal details);
+	void printAirportStatus();
 
 	printf("########################################################################################################\n\n");
 	printf("                                      International Airport XYZ\n\n");
@@ -51,7 +52,7 @@ int main(int argc, char *argv[]){
 
 		switch (code){
 			case 1:
-				struct Plane inputPlane = collectPlaneData;
+				struct Plane inputPlane = collectPlaneData();
 				addPlane(inputPlane);
 				break;
 			case 2:
