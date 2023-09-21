@@ -43,11 +43,50 @@ typedef struct Terminal{
 	int freeParkingSpots;
 } Terminal;
 
-int EXISTING_PLANE_IDS[100];
-int INDEX = 0;  // Stores the number of airplanes in the database
-int FLIGHTS_LIST[100];
-int FLIGHT_INDEX = 0; 	// Stores the number of flights currently on schedule
+int EXISTING_PLANE_IDS[100] = {0};
+int INDEX;  // Stores the number of airplanes in the database
+int FLIGHTS_LIST[100] = {0};
+int FLIGHT_INDEX; 	// Stores the number of flights currently on schedule
 
+void populateDatabaseMetrics(){
+	// The purpose of this method is to run every time the program starts 
+	// and read the information in the databases so it can populate the metrics
+
+
+	// Capture Airplanes in database
+	FILE *ptr; 
+	ptr = fopen("airplanes.bin", "r");
+	if (ptr == NULL){
+		printf("Error: Couldn't read databse airplanes\n");
+		exit(1);
+	}
+
+	struct Plane tempPlane;
+	INDEX = 0;
+	while (!feof(ptr)){
+		fread(&tempPlane, sizeof(Plane), 1, ptr);
+		EXISTING_PLANE_IDS[INDEX] = tempPlane.plane_id;
+		INDEX++;		// Capture index number
+	}
+	fclose(ptr);
+
+	// Capture Flights in database
+	ptr = fopen("flightDetails.bin", "r");
+	if (ptr == NULL){
+		printf("Error: Couldn't open flightDetails database\n");
+		exit(1);
+	}
+	
+	struct FlightDetails tempFlight;
+	FLIGHT_INDEX = 0;
+	while (!feof(ptr)){
+		fread(&tempFlight, sizeof(FlightDetails), 1, ptr);
+		FLIGHTS_LIST[FLIGHT_INDEX] = tempFlight.flight_id;
+		FLIGHT_INDEX++;
+	}
+	fclose(ptr);
+
+}
 
 void addPlane(struct Plane inputData){
 	// Method to store the data for a plane in the 
@@ -134,6 +173,9 @@ struct Plane collectPlaneData(){
 	scanf("%i", &result.flight_id);
 
 	// Once all data have been collected add airoplane ID in array
+	if (EXISTING_PLANE_IDS[0] = 0){
+		INDEX = 0;
+	}
 	EXISTING_PLANE_IDS[INDEX] = result.plane_id;
 	INDEX++;
 	

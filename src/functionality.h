@@ -94,9 +94,11 @@ int commandEvaluation(char *inputValue){
 		return 8;
 	} else if (strcmp("terminal details", inputValue) == 0){
 		return 9;
+	} else if (strcmp("airport view", inputValue) == 0){
+		return 10;
+	} else if (strcmp("help", inputValue) == 0){
+		return 11;
 	}
-
 	return 0;
-
 }
 

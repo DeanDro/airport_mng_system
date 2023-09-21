@@ -30,23 +30,18 @@ int main(int argc, char *argv[]){
 	struct Terminal collectTerminalDetails();
 	void storeTerminalDetails(struct Terminal details);
 	void printAirportStatus();
+	void printCommandSelection();
+	void populateDatabaseMetrics();
 
-	printf("########################################################################################################\n\n");
-	printf("                                      International Airport XYZ\n\n");
-	printf("#########################################################################################################\n\n");
-	printf("1. add plane: To add a new plane in database     2. search plane: To search plane by flight id\n");
-	printf("3. print all ids: To return all flight ids       4. add flight: To add a new flight in the database\n");
-	printf("5. flight time: To find duration of a flight     6. add terminal: To add a new terminal in the database\n");
-	printf("7. modify terminal: To change terminal details   8. terminal details: To get details for all terminals\n");
-	printf("9: quit: To terminate the program\n");
-	printf("#########################################################################################################\n\n");
+	printCommandSelection();
+	populateDatabaseMetrics();
 	/* The purpose of this section is to read users input 
 	 * and execute command.
 	 */
 
 	while (running){
 
-		printf("Please give a command: ");
+		printf("Please give a command (help for a list of command options): ");
 		readSingleLine(userInput);
 		code = commandEvaluation(userInput);
 
@@ -93,8 +88,15 @@ int main(int argc, char *argv[]){
 				readSingleLine(terminal_num);
 				printTerminalDetails(terminal_num);
 				break;
+			case 10:
+				printAirportStatus();
+				break;
+			case 11:
+				printCommandSelection();
+				break;
 			default:
 				printf("You didn't give a valid command\n");
+				printCommandSelection();
 				break;
 		}
 	}	
@@ -143,5 +145,25 @@ void printAirportStatus(){
 	//from the user. 
 
 	//TODO: Need to develop method that shows airport status
+	printf("\n");
+	printf("########################################################################\n\n");
+	printf("                          XYZ International Airport                     \n\n");
+	printf("########################################################################\n\n");
+	printf("Number of Airplanes Landed: %i\n", INDEX);
+	printf("Number of Fligths Scheduled: %i\n", FLIGHT_INDEX);
+	printf("\n");
 
+}
+
+void printCommandSelection(){
+	// Prints the list of command options 
+	printf("########################################################################################################\n\n");
+	printf("                                      International Airport XYZ\n\n");
+	printf("#########################################################################################################\n\n");
+	printf("1. add plane: To add a new plane in database     2. search plane: To search plane by flight id\n");
+	printf("3. print all ids: To return all flight ids       4. add flight: To add a new flight in the database\n");
+	printf("5. flight time: To find duration of a flight     6. add terminal: To add a new terminal in the database\n");
+	printf("7. modify terminal: To change terminal details   8. terminal details: To get details for all terminals\n");
+	printf("9: quit: To terminate the program               10. airport view: Returns an overview of the airport\n");
+	printf("#########################################################################################################\n\n");
 }
