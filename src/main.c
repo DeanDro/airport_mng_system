@@ -167,3 +167,11 @@ void printCommandSelection(){
 	printf("9: quit: To terminate the program               10. airport view: Returns an overview of the airport\n");
 	printf("#########################################################################################################\n\n");
 }
+
+bool credentialCheckIn(char *username, char *password){
+	// Helper method that checks user credentials. If the user
+	//doesn't provide correct info it will not be granted access. Returns a bool
+	// and takes as argument two char pointers for username and password.
+
+	//TODO
+}

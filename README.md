@@ -46,3 +46,11 @@ Method takes no arguments and is used to collect user inputs for a flight. It wi
 ### addFlightID(struct FlightDetails flight)
 Takes as argument a FlightDetails structure and stores it in the flightDetails.bin file. If the file doesn't exist it will create it otherwise will append the existing version.
 
+### addGateDetails()
+Method to add the details of a gate to the database. It creates file gates.bin if it doesn't exist or updates an existing file.
+
+### collectTerminalDetails()
+Helper method that returns a Terminal struct that will be later passed as an argument to method **storeTerminalDetails** to be stored in file terminals.bin.
+
+### storeTerminalDetails(struct Terminal terminalInfo)
+Method that takes as an argument a structure Terminal and stores the infomration into **terminals.bin**. The method creates the file if it doesn't exist, otherwise it will update an existing file.
