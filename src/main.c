@@ -7,6 +7,9 @@
 #include"trips.h"
 #include<windows.h>
 
+#define USERNAME "admin"
+#define PASSWORD "keyMaster1"
+
 int main(int argc, char *argv[]){
 
 	
@@ -23,7 +26,7 @@ int main(int argc, char *argv[]){
 	void addPlane(struct Plane planeData);
 	void searchPlane(int planeID);
 	struct Plane collectPlaneData();
-	bool running = true;
+	bool running;
 	struct FlightDetails collectFlightDetails;
 	void addFlightID(struct FlightDetails flight);
 	void createCircle();
@@ -34,6 +37,7 @@ int main(int argc, char *argv[]){
 	void printCommandSelection();
 	void populateDatabaseMetrics();
 	void readFileContent(char *fileStream);
+	bool credentialCheckIn();
 
 	printCommandSelection();
 	populateDatabaseMetrics();
@@ -41,6 +45,7 @@ int main(int argc, char *argv[]){
 	 * and execute command.
 	 */
 
+	running = credentialCheckIn();
 
 	while (running){
 
@@ -179,12 +184,27 @@ void printCommandSelection(){
 	printf("#########################################################################################################\n\n");
 }
 
-bool credentialCheckIn(char *username, char *password){
+bool credentialCheckIn(){
 	// Helper method that checks user credentials. If the user
 	//doesn't provide correct info it will not be granted access. Returns a bool
 	// and takes as argument two char pointers for username and password.
 
-	//TODO
+	void readSingleLine(char *array);
+	char username[80];
+	char password[80];
+	printf("Username: ");
+	readSingleLine(username);
+	printf("\nPassword: ");
+	readSingleLine(password);
+
+	if (strcmp(username, USERNAME) == 0 && strcmp(password, PASSWORD) == 0){
+		printf("ACCESS GRANDED!\n\n");
+		return true;
+	} else {
+		printf("ACCESS DENIED\n\n");
+		return false;
+	}
+
 }
 
 void readFileContent(char * fileInput){
