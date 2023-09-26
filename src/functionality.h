@@ -98,6 +98,8 @@ int commandEvaluation(char *inputValue){
 		return 10;
 	} else if (strcmp("help", inputValue) == 0){
 		return 11;
+	} else if (strcmp("read data", inputValue) == 0){
+		return 12;
 	}
 	return 0;
 }

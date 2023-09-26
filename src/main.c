@@ -13,6 +13,7 @@ int main(int argc, char *argv[]){
 	// Methods and variables that will be used from the 
 	// program 
 	
+
 	void readUserInput(char *inputValue);
 	void printContent(char *data);	
 	char userInput[80];    // Store users input
@@ -32,12 +33,14 @@ int main(int argc, char *argv[]){
 	void printAirportStatus();
 	void printCommandSelection();
 	void populateDatabaseMetrics();
+	void readFileContent(char *fileStream);
 
 	printCommandSelection();
 	populateDatabaseMetrics();
 	/* The purpose of this section is to read users input 
 	 * and execute command.
 	 */
+
 
 	while (running){
 
@@ -93,6 +96,14 @@ int main(int argc, char *argv[]){
 				break;
 			case 11:
 				printCommandSelection();
+				break;
+			case 12:
+				if (argc > 1){
+					readFileContent(argv[1]);
+				} else {
+					printf("You haven't provided an additional file\n");
+					
+				}
 				break;
 			default:
 				printf("You didn't give a valid command\n");
@@ -174,4 +185,25 @@ bool credentialCheckIn(char *username, char *password){
 	// and takes as argument two char pointers for username and password.
 
 	//TODO
+}
+
+void readFileContent(char * fileInput){
+	// Method that reads a file location passed as an argument and prints its content
+
+	FILE *ptr; 
+	char character;
+	ptr = fopen(fileInput, "r");
+	if (ptr == NULL ){
+		printf("System couldn't open the file\n");
+		exit(1);
+	}
+
+	char * content = (char *) malloc(80 * sizeof(char));
+	character = fgetc(ptr);
+	do {
+		printf("%c", character);
+		character = fgetc(ptr);
+	} while (character != '\0' && !feof(ptr));
+	printf("\nThat was the end of the file\n");
+	fclose(ptr);
 }
